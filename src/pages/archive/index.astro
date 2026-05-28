@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Archive" description="Chronological archive of Koicosmos notes.">
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Chronology</p>
+        <h1>Archive</h1>
+      </div>
+    </div>
+    <ul class="archive-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.data.slug}/`}>
+            <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString("en-US")}</time>
+            <span>{post.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Admin"
+  description="Editing entry for Koicosmos Markdown content through Pages CMS and GitHub."
+>
+  <article class="shell prose">
+    <p class="kicker">Editor</p>
+    <h1>Admin</h1>
+    <p>
+      This site stores posts and project pages as Markdown files in GitHub. Use Pages CMS to edit them
+      through a form-based interface.
+    </p>
+    <p>
+      <a class="button primary" href="https://app.pagescms.org" target="_blank" rel="noreferrer">Open Pages CMS</a>
+    </p>
+    <h2>What to edit</h2>
+    <p>
+      Blog posts live in <code>src/content/blog</code>. Project pages live in <code>src/content/projects</code>.
+      The fields are configured in <code>.pages.yml</code>.
+    </p>
+  </article>
+</BaseLayout>

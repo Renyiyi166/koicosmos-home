@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Koicosmos | Personal Notes, Classical Reading, and Design",
+  description = "Koicosmos is a personal site for essays, projects, classical language reading, design research, and a searchable public profile.",
+  canonical = Astro.url.href
+} = Astro.props;
+
+const pageTitle = title.includes("Koicosmos") ? title : `${title} | Koicosmos`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" type="application/rss+xml" title="Koicosmos RSS" href="/rss.xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="shell nav" aria-label="Primary navigation">
+        <a class="brand" href="/">
+          <span class="sigil">K</span>
+          <span>
+            <strong>Koicosmos</strong>
+            <span>notes, language, design</span>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="/about/">About</a>
+          <a href="/blog/">Blog</a>
+          <a href="/archive/">Archive</a>
+          <a href="/projects/">Projects</a>
+          <a href="/admin/">Admin</a>
+          <a class="sensus-link" href="https://sensus.koicosmos.com">Sensus</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="shell">
+        Koicosmos. Built with Markdown, Astro, and a fondness for marginalia.
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Blog" description="Essays and notes from Koicosmos.">
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Notes</p>
+        <h1>Blog</h1>
+      </div>
+    </div>
+    <div class="grid">
+      {posts.map((post) => (
+        <article class="entry-card">
+          <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString("en-US")}</time>
+          <h3><a href={`/blog/${post.data.slug}/`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

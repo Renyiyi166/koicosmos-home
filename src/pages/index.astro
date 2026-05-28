@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const projects = (await getCollection("projects"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="shell hero">
+    <div class="hero-copy">
+      <p class="kicker">Personal archive and classical interface lab</p>
+      <h1>Koicosmos</h1>
+      <p class="lead">
+        A public home for essays, project notes, classical language experiments, and a searchable profile.
+        The first doorway opens into Sensus, an interactive reader for Latin and other ancient texts.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="https://sensus.koicosmos.com">Enter Sensus</a>
+        <a class="button" href="/about/">Read profile</a>
+        <a class="button" href="/blog/">Browse notes</a>
+      </div>
+    </div>
+    <aside class="dossier" aria-label="Site dossier">
+      <div class="paper-card">
+        <p class="kicker">Dossier</p>
+        <h2>What lives here</h2>
+        <ul class="evidence-list">
+          <li>Personal introduction and resume-like public profile.</li>
+          <li>Markdown essays with tags, archive pages, RSS, and sitemap.</li>
+          <li>Project entries, beginning with Sensus Classical Reader.</li>
+          <li>Admin entry for editing posts through Pages CMS and GitHub.</li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <h2>Recent Notes</h2>
+      <a class="muted" href="/archive/">View archive</a>
+    </div>
+    <div class="grid">
+      {posts.map((post) => (
+        <article class="entry-card">
+          <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString("en-US")}</time>
+          <h3><a href={`/blog/${post.data.slug}/`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <a class="muted" href="/projects/">All projects</a>
+    </div>
+    <div class="grid">
+      {projects.map((project) => (
+        <article class="entry-card">
+          <p class="meta">Project file</p>
+          <h3><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h3>
+          <p>{project.data.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
