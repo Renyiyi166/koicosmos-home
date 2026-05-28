@@ -18,7 +18,7 @@ const posts = (await getCollection("blog"))
     <ul class="archive-list">
       {posts.map((post) => (
         <li>
-          <a href={`/blog/${post.data.slug}/`}>
+          <a href={`/blog/${post.slug}/`}>
             <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString("en-US")}</time>
             <span>{post.data.title}</span>
           </a>

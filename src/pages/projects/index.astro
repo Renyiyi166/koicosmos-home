@@ -18,7 +18,7 @@ const projects = (await getCollection("projects"))
       {projects.map((project) => (
         <article class="entry-card">
           <p class="meta">Project</p>
-          <h3><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h3>
+          <h3><a href={`/projects/${project.slug}/`}>{project.data.title}</a></h3>
           <p>{project.data.description}</p>
         </article>
       ))}

@@ -4,7 +4,6 @@ const blog = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
     description: z.string(),
     pubDate: z.date(),
     updatedDate: z.date().optional(),
@@ -17,7 +16,6 @@ const projects = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
     description: z.string(),
     url: z.string().url().optional(),
     order: z.number().default(10)
