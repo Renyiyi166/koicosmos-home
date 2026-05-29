@@ -13,37 +13,33 @@ const projects = (await getCollection("projects"))
 ---
 
 <BaseLayout>
-  <section class="shell hero">
+  <section class="shell hero minimal-hero">
     <div class="hero-copy">
-      <p class="kicker">Personal archive and classical interface lab</p>
+      <p class="kicker">Koicosmos</p>
       <h1>Koicosmos</h1>
       <p class="lead">
-        A public home for essays, project notes, classical language experiments, and a searchable profile.
-        The first doorway opens into Sensus, an interactive reader for Latin and other ancient texts.
+        A quiet personal site for notes, language learning, and small interface experiments.
+        For now, the clearest doorway is Sensus: an interactive reader for Latin and classical texts.
       </p>
       <div class="actions">
-        <a class="button primary" href="https://sensus.koicosmos.com">Enter Sensus</a>
-        <a class="button" href="/about/">Read profile</a>
-        <a class="button" href="/blog/">Browse notes</a>
+        <a class="button primary" href="https://sensus.koicosmos.com">Open Sensus</a>
+        <a class="button" href="/blog/">Read notes</a>
       </div>
     </div>
-    <aside class="dossier" aria-label="Site dossier">
-      <div class="paper-card">
-        <p class="kicker">Dossier</p>
-        <h2>What lives here</h2>
-        <ul class="evidence-list">
-          <li>Personal introduction and resume-like public profile.</li>
-          <li>Markdown essays with tags, archive pages, RSS, and sitemap.</li>
-          <li>Project entries, beginning with Sensus Classical Reader.</li>
-          <li>Admin entry for editing posts through Pages CMS and GitHub.</li>
-        </ul>
-      </div>
+    <aside class="quiet-panel" aria-label="Current focus">
+      <p class="panel-label">Current focus</p>
+      <h2>Sensus Classical Reader</h2>
+      <p>
+        Turning ancient text into something readable, clickable, and alive:
+        grammar, syntax, translation, and context in one place.
+      </p>
+      <a href="https://sensus.koicosmos.com">Visit the project</a>
     </aside>
   </section>
 
   <section class="shell section">
     <div class="section-head">
-      <h2>Recent Notes</h2>
+      <h2>Notes</h2>
       <a class="muted" href="/archive/">View archive</a>
     </div>
     <div class="grid">
